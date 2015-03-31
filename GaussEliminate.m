@@ -1,4 +1,5 @@
-function [w, r] = GaussEliminate(A, b)
+function [r,t] = GaussEliminate(A, b)
+    tic
     P = [A b];
     x=size(A,1);
     
@@ -9,7 +10,7 @@ function [w, r] = GaussEliminate(A, b)
     %end
     
     if(det(A) == 0)
-        error('Macierz jest osobliwa')
+        fprintf(1,'Macierz jest osobliwa');
     end
     
     %Przekszta³canie macierzy z czeœciowym wyborem elementu podstawowego
@@ -38,7 +39,7 @@ function [w, r] = GaussEliminate(A, b)
         %P
     end
     
-    P
+    %P
     
     %Od koñca bêdziemy obliczaæ kolejne wartoœci wynikowe i wstawiaæ je do
     %wektora wynikowego - w, gdzie k to indeks oblicznej obecnie wartoœci
@@ -68,7 +69,8 @@ function [w, r] = GaussEliminate(A, b)
     %A
     %w
     %r jest residuum
-    r = b - A * w
+    r = b - A * w;
     %Po obliczeniu normy zwracamy j¹ jako b³¹d obliczenia
-    r = norm(r)
+    r = norm(r);
+    t = toc;
 end
